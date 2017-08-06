@@ -54,7 +54,7 @@ RUN apk add --no-cache \
 		bash
 
 # add web-ssh access to app container from kudu
-RUN apk add --no-cache supervisor
+RUN apk add --no-cache openssh-server
 
 ENV NPM_CONFIG_LOGLEVEL warn
 ENV NODE_ENV production
