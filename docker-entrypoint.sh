@@ -1,5 +1,5 @@
 #!/bin/bash
-service ssh start
+ssh start
 
 set -e
 
