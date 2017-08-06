@@ -42,5 +42,5 @@ COPY sshd_config /etc/ssh/
 COPY docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-EXPOSE 2368
+EXPOSE 2368 2222
 CMD ["node", "current/index.js"]
