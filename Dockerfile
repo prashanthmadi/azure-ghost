@@ -3,7 +3,8 @@ FROM node:6-slim
 # Install openssh for web-ssh access from kudu
 RUN apt-get update && apt-get install \
       --no-install-recommends --no-install-suggests -y \
-      openssh-server
+      openssh-server \
+      && echo "root:Docker!" | chpasswd
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
