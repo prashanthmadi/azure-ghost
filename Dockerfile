@@ -4,7 +4,13 @@ FROM node:6-slim
 RUN apt-get update && apt-get install \
       --no-install-recommends --no-install-suggests -y \
       openssh-server \
+	  supervisor \
       && echo "root:Docker!" | chpasswd
+
+# forward request and error logs to docker log collector
+RUN mkdir -p /home/LogFiles/docker \
+	&& ln -sf /dev/stdout /home/LogFiles/docker/access.log \
+	&& ln -sf /dev/stderr /home/LogFiles/docker/error.log
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
@@ -19,7 +25,7 @@ RUN set -x \
 	&& gosu nobody true
 
 ENV NPM_CONFIG_LOGLEVEL warn
-ENV NODE_ENV production
+#ENV NODE_ENV production
 ENV GHOST_CLI_VERSION 1.0.3
 ENV GHOST_VERSION 1.5.0
 
@@ -48,6 +54,7 @@ WORKDIR $GHOST_INSTALL
 
 COPY sshd_config /etc/ssh/
 COPY docker-entrypoint.sh /bin/
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf	
 
 EXPOSE 2368 2222
 CMD ["/bin/docker-entrypoint.sh"]

@@ -1,5 +1,6 @@
 #!/bin/bash
 service ssh start
+gosu node ghost config paths.contentPath "$GHOST_CONTENT"
 
 # allow the container to be started with `--user`
 if [[ "$*" == node*current/index.js* ]] && [ "$(id -u)" = '0' ]; then
@@ -21,4 +22,4 @@ if [[ "$*" == node*current/index.js* ]]; then
 	knex-migrator-migrate --init --mgpath "$GHOST_INSTALL/current"
 fi
 
-node current/index.js
+/usr/bin/supervisord
