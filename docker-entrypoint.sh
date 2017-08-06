@@ -1,4 +1,6 @@
 #!/bin/bash
+service ssh start
+
 set -e
 
 # allow the container to be started with `--user`

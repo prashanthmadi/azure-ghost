@@ -1,5 +1,3 @@
-# https://docs.ghost.org/supported-node-versions/
-# https://github.com/nodejs/LTS
 FROM node:6-alpine
 
 # grab su-exec for easy step-down from root
@@ -8,6 +6,9 @@ RUN apk add --no-cache 'su-exec>=0.2'
 RUN apk add --no-cache \
 # add "bash" for "[["
 		bash
+
+# add web-ssh access to app container from kudu
+RUN apk add --no-cache supervisor
 
 ENV NPM_CONFIG_LOGLEVEL warn
 ENV NODE_ENV production
@@ -36,8 +37,8 @@ RUN set -ex; \
 	chown node:node "$GHOST_CONTENT"
 
 WORKDIR $GHOST_INSTALL
-VOLUME $GHOST_CONTENT
 
+COPY sshd_config /etc/ssh/
 COPY docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
 
