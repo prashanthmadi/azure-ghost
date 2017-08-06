@@ -46,6 +46,8 @@ RUN set -ex; \
 WORKDIR $GHOST_INSTALL
 
 COPY sshd_config /etc/ssh/
+RUN chmod 755 /etc/ssh/*
+
 COPY docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
 
