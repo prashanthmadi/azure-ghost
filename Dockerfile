@@ -1,8 +1,9 @@
 FROM node:6-slim
 
 # Install openssh for web-ssh access from kudu
-RUN --no-install-recommends --no-install-suggests -y \
-      apt-get update && apt-get install openssh-server
+RUN apt-get update && apt-get install \
+      --no-install-recommends --no-install-suggests -y \
+      openssh-server
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
