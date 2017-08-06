@@ -1,8 +1,5 @@
 #!/bin/bash
-
 service ssh start
-
-set -e
 
 # allow the container to be started with `--user`
 if [[ "$*" == node*current/index.js* ]] && [ "$(id -u)" = '0' ]; then
@@ -24,4 +21,4 @@ if [[ "$*" == node*current/index.js* ]]; then
 	knex-migrator-migrate --init --mgpath "$GHOST_INSTALL/current"
 fi
 
-exec "$@"
+node current/index.js

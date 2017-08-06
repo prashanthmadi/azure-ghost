@@ -47,10 +47,7 @@ RUN set -ex; \
 WORKDIR $GHOST_INSTALL
 
 COPY sshd_config /etc/ssh/
-RUN chmod 755 /etc/ssh/*
-
-COPY docker-entrypoint.sh /usr/local/bin
-ENTRYPOINT ["docker-entrypoint.sh"]
+COPY docker-entrypoint.sh /bin/
 
 EXPOSE 2368 2222
-CMD ["node", "current/index.js"]
+CMD ["/bin/docker-entrypoint.sh"]
