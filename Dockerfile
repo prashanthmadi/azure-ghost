@@ -4,7 +4,7 @@ FROM node:6-slim
 RUN apt-get update && apt-get install \
       --no-install-recommends --no-install-suggests -y \
       openssh-server \
-      && echo "node:Docker!" | chpasswd
+      && echo "root:Docker!" | chpasswd
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gosu node service ssh start
+service ssh start
 
 set -e
 
