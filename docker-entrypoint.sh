@@ -3,6 +3,7 @@ service ssh start
 gosu node ghost config paths.contentPath "$GHOST_CONTENT"
 chown -R node "$GHOST_CONTENT"
 
+echo "************started migration***********"
 # move content if it doesn't exist
 #if ! [ "$(ls -A $GHOST_CONTENT)" ]; then
 	baseDir="$GHOST_INSTALL/content.orig"
@@ -14,7 +15,8 @@ chown -R node "$GHOST_CONTENT"
 			tar -cC "$(dirname "$src")" "$(basename "$src")" | tar -xC "$(dirname "$target")"
 		fi
 	done
-	knex-migrator-migrate --init --mgpath "$GHOST_INSTALL/current"
+	gosu node knex-migrator-migrate --init --mgpath "$GHOST_INSTALL/current"
 #fi
+echo "************migration ended***********"
 
 /usr/bin/supervisord
