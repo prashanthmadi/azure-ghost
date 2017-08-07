@@ -1,14 +1,10 @@
 #!/bin/bash
 service ssh start
 gosu node ghost config paths.contentPath "$GHOST_CONTENT"
+chown -R node "$GHOST_CONTENT"
 
-# allow the container to be started with `--user`
-if [[ "$*" == node*current/index.js* ]] && [ "$(id -u)" = '0' ]; then
-	chown -R node "$GHOST_CONTENT"
-	exec gosu node "$BASH_SOURCE" "$@"
-fi
-
-if [[ "$*" == node*current/index.js* ]]; then
+# move content if it doesn't exist
+#if ! [ "$(ls -A $GHOST_CONTENT)" ]; then
 	baseDir="$GHOST_INSTALL/content.orig"
 	for src in "$baseDir"/*/ "$baseDir"/themes/*; do
 		src="${src%/}"
@@ -18,8 +14,7 @@ if [[ "$*" == node*current/index.js* ]]; then
 			tar -cC "$(dirname "$src")" "$(basename "$src")" | tar -xC "$(dirname "$target")"
 		fi
 	done
-
 	knex-migrator-migrate --init --mgpath "$GHOST_INSTALL/current"
-fi
+#fi
 
 /usr/bin/supervisord
