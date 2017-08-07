@@ -7,11 +7,6 @@ RUN apt-get update && apt-get install \
 	  supervisor \
       && echo "root:Docker!" | chpasswd
 
-# forward request and error logs to docker log collector
-RUN mkdir -p /home/LogFiles \
-	&& ln -sf /dev/stdout /home/LogFiles/access.log \
-	&& ln -sf /dev/stderr /home/LogFiles/error.log
-
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
 RUN set -x \
@@ -53,8 +48,8 @@ RUN set -ex; \
 WORKDIR $GHOST_INSTALL
 
 COPY sshd_config /etc/ssh/
-COPY docker-entrypoint.sh /bin/
+COPY init-container.sh /bin/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf	
 
 EXPOSE 2368 2222
-CMD ["/bin/docker-entrypoint.sh"]
+CMD ["/bin/init-container.sh"]
