@@ -7,7 +7,7 @@ chown -R node "$GHOST_CONTENT"
 echo "************started migration***********"
 echo printenv
 # move content if it doesn't exist
-#if ! [ "$(ls -A $GHOST_CONTENT)" ]; then
+if ! [ "$(ls -A $GHOST_CONTENT)" ]; then
 	baseDir="$GHOST_INSTALL/content.orig"
 	for src in "$baseDir"/*/ "$baseDir"/themes/*; do
 		src="${src%/}"
@@ -18,7 +18,7 @@ echo printenv
 		fi
 	done
 	gosu node knex-migrator-migrate --init --mgpath "$GHOST_INSTALL/current"
-#fi
+fi
 echo "************migration ended***********"
 
 /usr/bin/supervisord
