@@ -1,7 +1,7 @@
 #!/bin/bash
 [ -e "/home/site/wwwroot/hostingstart.html" ] && rm "/home/site/wwwroot/hostingstart.html"
 echo "************started migration***********"
-echo printenv
+printenv
 # move content if it doesn't exist
 if ! [ "$(ls -A $GHOST_CONTENT)" ]; then
 	baseDir="$GHOST_INSTALL/content.orig"
