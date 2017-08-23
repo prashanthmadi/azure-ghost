@@ -1,4 +1,4 @@
-FROM ghost:1.5
+FROM ghost:1.6
 
 # Install openssh for web-ssh access from kudu
 RUN apt-get update && apt-get install \
