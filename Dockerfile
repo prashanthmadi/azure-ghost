@@ -1,4 +1,4 @@
-FROM ghost:1.6
+FROM ghost:1.7
 
 # Install openssh for web-ssh access from kudu
 RUN apt-get update && apt-get install \
@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install \
 	supervisor \
       && echo "root:Docker!" | chpasswd
 
+# Creating folder so that image won't fail in non-azure
 RUN mkdir -p /home/LogFiles
 
 COPY sshd_config /etc/ssh/
