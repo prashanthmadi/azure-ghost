@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install \
 	supervisor \
       && echo "root:Docker!" | chpasswd
 
+RUN mkdir -p /home/LogFiles
+
 COPY sshd_config /etc/ssh/
 COPY init-container.sh /bin/
 COPY migrate_util.sh /bin/
