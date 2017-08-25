@@ -8,14 +8,28 @@
                 "description": "Name of azure web app"
             }
         },
-        "administratorLogin": {
+         "databaseServer": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Database Server name"
+            }
+        },
+         "databaseName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Database name"
+            }
+        },
+        "databaseUser": {
             "type": "string",
             "minLength": 1,
             "metadata": {
                 "description": "Database administrator login name"
             }
         },
-        "administratorLoginPassword": {
+        "databaseLoginPassword": {
             "type": "securestring",
             "minLength": 8,
             "metadata": {
@@ -78,8 +92,6 @@
         }
     },
     "variables": {
-        "databaseName": "[concat(parameters('siteName'), 'database')]",
-        "serverName": "[concat(parameters('siteName'), 'mysqlserver')]",
         "hostingPlanName": "[concat(parameters('siteName'), 'serviceplan')]"
     },
     "resources": [{
@@ -89,19 +101,19 @@
                 "siteConfig": {
                     "appSettings": [{
                             "name": "DB_HOST",
-                            "value": "[concat(variables('serverName') ,'.mysql.database.azure.com')]"
+                            "value": "[concat(parameters('databaseServer') ,'.mysql.database.azure.com')]"
                         },
                         {
                             "name": "DB_NAME",
-                            "value": "[variables('dataBaseName')]"
+                            "value": "[parameters('databaseName')]"
                         },
                         {
                             "name": "DB_USER",
-                            "value": "[concat(variables('administratorLogin'),'@',variables('serverName'))]"
+                            "value": "[concat(parameters('databaseUser'),'@',parameters('serverName'))]"
                         },
                         {
                             "name": "DB_PASS",
-                            "value": "[variables('administratorLoginPassword')]"
+                            "value": "[parameters('databaseLoginPassword')]"
                         },
                         {
                             "name": "GHOST_CONTENT",
@@ -109,7 +121,7 @@
                         },
                         {
                             "name": "GHOST_URL",
-                            "value": "[concat('http://',parameters('dataBaseHost'),'azurewebsites.net')]"
+                            "value": "[concat('http://',parameters('siteName'),'azurewebsites.net')]"
                         }
                     ],
                     "appCommandLine": "",
@@ -151,8 +163,8 @@
             "name": "[variables('serverName')]",
             "properties": {
                 "version": "[parameters('mysqlVersion')]",
-                "administratorLogin": "[parameters('administratorLogin')]",
-                "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
+                "administratorLogin": "[parameters('databaseUser')]",
+                "administratorLoginPassword": "[parameters('databaseLoginPassword')]",
                 "storageMB": "[parameters('databaseSkuSizeMB')]"
             },
             "sku": {
