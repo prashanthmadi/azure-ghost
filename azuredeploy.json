@@ -101,7 +101,7 @@
                         },
                         {
                             "name": "DB_PASS",
-                            "value": "[variables(''administratorLoginPassword'')]"
+                            "value": "[variables('administratorLoginPassword')]"
                         },
                         {
                             "name": "GHOST_CONTENT",
