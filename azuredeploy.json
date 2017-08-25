@@ -97,7 +97,7 @@
                         },
                         {
                             "name": "DB_USER",
-                            "value": "[concat(variables('administratorLogin'),'@',variables('serverName')]"
+                            "value": "[concat(variables('administratorLogin'),'@',variables('serverName'))]"
                         },
                         {
                             "name": "DB_PASS",
