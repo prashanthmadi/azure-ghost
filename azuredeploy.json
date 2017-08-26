@@ -8,14 +8,14 @@
                 "description": "Name of azure web app"
             }
         },
-         "databaseServer": {
+        "databaseServer": {
             "type": "string",
             "minLength": 1,
             "metadata": {
                 "description": "Database Server name"
             }
         },
-         "databaseName": {
+        "databaseName": {
             "type": "string",
             "minLength": 1,
             "metadata": {
@@ -109,7 +109,7 @@
                         },
                         {
                             "name": "DB_USER",
-                            "value": "[concat(parameters('databaseUser'),'@',parameters('serverName'))]"
+                            "value": "[concat(parameters('databaseUser'),'@',parameters('databaseServer'))]"
                         },
                         {
                             "name": "DB_PASS",
@@ -126,7 +126,6 @@
                     ],
                     "appCommandLine": "",
                     "linuxFxVersion": "DOCKER|prashanthmadi/azure-ghost:latest"
-
                 },
                 "name": "[parameters('siteName')]",
                 "serverFarmId": "[variables('hostingPlanName')]",
@@ -160,7 +159,7 @@
             "apiVersion": "2016-02-01-privatepreview",
             "kind": "",
             "location": "[resourceGroup().location]",
-            "name": "[variables('serverName')]",
+            "name": "[parameters('databaseServer')]",
             "properties": {
                 "version": "[parameters('mysqlVersion')]",
                 "administratorLogin": "[parameters('databaseUser')]",
@@ -179,17 +178,17 @@
                     "type": "firewallrules",
                     "apiVersion": "2016-02-01-privatepreview",
                     "dependsOn": [
-                        "[concat('Microsoft.DBforMySQL/servers/', variables('serverName'))]"
+                        "[concat('Microsoft.DBforMySQL/servers/', parameters('databaseServer'))]"
                     ],
                     "location": "[resourceGroup().location]",
-                    "name": "[concat(variables('serverName'),'firewall')]",
+                    "name": "[concat(parameters('databaseServer'),'firewall')]",
                     "properties": {
                         "startIpAddress": "0.0.0.0",
                         "endIpAddress": "255.255.255.255"
                     }
                 },
                 {
-                    "name": "[variables('databaseName')]",
+                    "name": "[parameters('databaseName')]",
                     "type": "databases",
                     "apiVersion": "2016-02-01-privatepreview",
                     "properties": {
@@ -197,7 +196,7 @@
                         "collation": "utf8_general_ci"
                     },
                     "dependsOn": [
-                        "[concat('Microsoft.DBforMySQL/servers/', variables('serverName'))]"
+                        "[concat('Microsoft.DBforMySQL/servers/', parameters('databaseServer'))]"
                     ]
                 }
             ]
