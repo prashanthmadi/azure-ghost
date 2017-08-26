@@ -100,6 +100,10 @@
             "properties": {
                 "siteConfig": {
                     "appSettings": [{
+                            "name": "DOCKER_CUSTOM_IMAGE_NAME",
+                            "value": "prashanthmadi/azure-ghost:latest"
+                        },
+                        {
                             "name": "DB_HOST",
                             "value": "[concat(parameters('databaseServer') ,'.mysql.database.azure.com')]"
                         },
@@ -121,11 +125,9 @@
                         },
                         {
                             "name": "GHOST_URL",
-                            "value": "[concat('http://',parameters('siteName'),'azurewebsites.net')]"
+                            "value": "[concat('http://',parameters('siteName'),'.azurewebsites.net')]"
                         }
-                    ],
-                    "appCommandLine": "",
-                    "linuxFxVersion": "DOCKER|prashanthmadi/azure-ghost:latest"
+                    ]
                 },
                 "name": "[parameters('siteName')]",
                 "serverFarmId": "[variables('hostingPlanName')]",
