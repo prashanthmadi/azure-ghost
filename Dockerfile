@@ -15,7 +15,7 @@ RUN cd current \
       && npm install mysqljs/mysql \
       && cd /usr/local/lib/node_modules/knex-migrator/node_modules \
       && npm install mysqljs/mysql \
-      && /var/lib/ghost
+      && cd /var/lib/ghost
 
 
 COPY sshd_config /etc/ssh/
