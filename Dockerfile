@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install \
 RUN mkdir -p /home/LogFiles
 
 RUN cd current \
-      && npm install mysqljs/mysql
-      cd /usr/local/lib/node_modules/knex-migrator/node_modules \
+      && npm install mysqljs/mysql \
+      && cd /usr/local/lib/node_modules/knex-migrator/node_modules \
       && npm install mysqljs/mysql \
       && /var/lib/ghost
 
