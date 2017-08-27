@@ -5,10 +5,18 @@ RUN apt-get update && apt-get install \
       --no-install-recommends --no-install-suggests -y \
       openssh-server \
 	supervisor \
+      git \
       && echo "root:Docker!" | chpasswd
 
 # Creating folder so that image won't fail in non-azure
 RUN mkdir -p /home/LogFiles
+
+RUN cd current \
+      && npm install mysqljs/mysql
+      cd /usr/local/lib/node_modules/knex-migrator/node_modules \
+      && npm install mysqljs/mysql \
+      && /var/lib/ghost
+
 
 COPY sshd_config /etc/ssh/
 COPY init-container.sh /bin/
