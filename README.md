@@ -12,3 +12,6 @@ Docker Hub : https://hub.docker.com/r/prashanthmadi/azure-ghost/
 - DB_USER
 - GHOST_CONTENT /home/site/wwwroot
 - GHOST_URL
+
+#### Contributors
+- [Srikanth Sureddy](https://github.com/sureddy1)
