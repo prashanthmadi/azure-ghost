@@ -166,7 +166,8 @@
                 "version": "[parameters('mysqlVersion')]",
                 "administratorLogin": "[parameters('databaseUser')]",
                 "administratorLoginPassword": "[parameters('databaseLoginPassword')]",
-                "storageMB": "[parameters('databaseSkuSizeMB')]"
+                "storageMB": "[parameters('databaseSkuSizeMB')]",
+                "sslEnforcement":"Disabled"
             },
             "sku": {
                 "name": "[parameters('databaseSkuName')]",
