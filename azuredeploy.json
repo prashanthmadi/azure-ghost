@@ -99,6 +99,11 @@
             "name": "[parameters('siteName')]",
             "properties": {
                 "siteConfig": {
+                    "connectionStrings": [{
+                        "name": "defaultConnection",
+                        "ConnectionString": "[concat('Database=', parameters('databaseName'), ';Data Source=', parameters('databaseServer'),'.mysql.database.azure.com;User Id=',parameters('databaseUser'),'@',parameters('databaseServer') ,';Password=',parameters('databaseLoginPassword'))]",
+                        "type": "MySQL"
+                    }],
                     "appSettings": [{
                             "name": "DOCKER_CUSTOM_IMAGE_NAME",
                             "value": "prashanthmadi/azure-ghost:latest"
@@ -167,7 +172,7 @@
                 "administratorLogin": "[parameters('databaseUser')]",
                 "administratorLoginPassword": "[parameters('databaseLoginPassword')]",
                 "storageMB": "[parameters('databaseSkuSizeMB')]",
-                "sslEnforcement":"Disabled"
+                "sslEnforcement": "Disabled"
             },
             "sku": {
                 "name": "[parameters('databaseSkuName')]",
