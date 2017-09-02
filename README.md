@@ -19,3 +19,4 @@ GitHub : https://github.com/prashanthmadi/azure-ghost
 
 #### Contributors
 - [Srikanth Sureddy](https://github.com/sureddy1)
+- [Prashanth Madi](https://github.com/prashanthmadi)
