@@ -1,4 +1,5 @@
-FROM ghost:1.7
+FROM ghost:{{tag}}
+MAINTAINER Prashanth Madi <prashanthrmadi@gmail.com>
 
 # Install openssh for web-ssh access from kudu
 RUN apt-get update && apt-get install \
