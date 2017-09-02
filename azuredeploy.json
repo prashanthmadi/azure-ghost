@@ -106,7 +106,7 @@
                     }],
                     "appSettings": [{
                             "name": "DOCKER_CUSTOM_IMAGE_NAME",
-                            "value": "prashanthmadi/azure-ghost:latest"
+                            "value": "prashanthmadi/azure-ghost:1.8"
                         },
                         {
                             "name": "DB_HOST",
