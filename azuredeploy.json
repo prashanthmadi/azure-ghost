@@ -106,7 +106,7 @@
                     }],
                     "appSettings": [{
                             "name": "DOCKER_CUSTOM_IMAGE_NAME",
-                            "value": "prashanthmadi/azure-ghost:1.14"
+                            "value": "prashanthmadi/azure-ghost:2.2"
                         },
                         {
                             "name": "DB_HOST",
@@ -179,7 +179,7 @@
                 "tier": "[parameters('databaseSkuTier')]",
                 "capacity": "[parameters('databaseDTU')]",
                 "size": "[parameters('databaseSkuSizeMB')]",
-                "family": "SkuFamily"
+                "family": "Gen4"
             },
             "type": "Microsoft.DBforMySQL/servers",
             "resources": [{

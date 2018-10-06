@@ -12,7 +12,7 @@ if ! [ "$(ls -A $GHOST_CONTENT)" ]; then
 			tar -cC "$(dirname "$src")" "$(basename "$src")" | tar -xC "$(dirname "$target")"
 		fi
 	done
-	gosu node knex-migrator-migrate --init --mgpath "$GHOST_INSTALL/current"
+	gosu node ghost setup migrate
 fi
 echo "************migration ended***********"
 
