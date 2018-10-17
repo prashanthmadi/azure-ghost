@@ -2,7 +2,7 @@
 Extending Offical Ghost docker to work in Azure App Service Linux
 
 More Info on my blog<br>
-Ghost v1.x on Azure App Service Linux : https://ourwayoflyf.com/ghost-v1-0-on-app-service-linux/
+Ghost v1.x on Azure App Service Linux : https://prmadi.com/ghost-v1-0-on-app-service-linux/
 
 DockerHub : https://hub.docker.com/r/prashanthmadi/azure-ghost/<br>
 GitHub : https://github.com/prashanthmadi/azure-ghost
